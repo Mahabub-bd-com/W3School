@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sehri Time Countdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 20px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            font-size: 24px;
+        }
+        .box {
+            background: black;
+            padding: 10px;
+            border-radius: 5px;
+            color: orange;
+        }
+
+        /* সেহরির শেষ সময় / ইফতারের সময় */
+        .time-box {
+            margin-top: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            /* background-color: #222; */
+            background-color: black;
+            color: orange;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h2>আজকে সেহরির বাকি</h2>
+    <div class="countdown">
+        <div class="box"><span id="hours">0</span> <br>ঘণ্টা</div>
+        <div class="box"><span id="minutes">0</span> <br>মিনিট</div>
+        <div class="box"><span id="seconds">0</span> <br>সেকেন্ড</div>
+    </div>
+
+    <!-- সেহরির শেষ সময় / ইফতারের সময় -->
+    <div class="time-box">
+        <p>সেহরির শেষ সময় <span id="sehri-time">04:52</span> মিনিট - ঢাকা</p>
+        <p>ইফতারের সময় <span id="iftar-time">06:08</span> মিনিট - ঢাকা</p>
+    </div>
+
+
+    <!-- Display the Array  -->
+    <script>
+        function updateCountdown() {
+            const sehriTime = new Date();
+            sehriTime.setHours(4, 52, 0, 0); // Set Sehri time to 4:52 AM
+
+            const now = new Date();
+            let diff = sehriTime - now;
+            
+            if (diff < 0) {
+                sehriTime.setDate(sehriTime.getDate() + 1);
+                diff = sehriTime - now;
+            }
+
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+</body>
+</html>
