@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Object in HTML</title>
+    <!-- styles -->
+     <style>
+
+        /* Center the title */
+        h1 {
+            text-align: center;
+        }
+
+        /* Center the container */
+        #demo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        /* Style the list */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            /* text-align: center; */
+        }
+
+        /* Style list items */
+        li {
+            font-size: 24px;
+            margin: 5px 0;
+        }
+
+     </style>
+
+</head>
+<body>
+
+    <h1>Employee Details</h1>
+
+    <!-- demo -->
+    <p id="demo"></p>
+    
+    <script>
+        const mahabub_Datails = {
+            name: 'Md Mahabu Hasan',
+            desingnation: 'Executive Engineer (Mech)',
+            employee_Id: '5447-8',
+            posting: 'BISF, Mirpur-1',
+            last_Promotion: '27/01/2025',
+            joining_Date: '12/12/2013',
+            basic: '42,000/-',
+            nextIncrementDate: '01/07/2025',
+            occurance: 'Never',
+            next_Promotion_Year: '2030',
+        };
+        
+        // Convert object to readable format
+        let detailsHTML = "<ul>";
+        for (let key in mahabub_Datails) {
+            detailsHTML += ` <li><strong>${key.replace(/_/g, ' ')}:</strong> ${mahabub_Datails[key]}</li> `;
+        }
+        detailsHTML += "</ul>";
+
+        // Display inside the paragraph
+        document.getElementById("demo").innerHTML = detailsHTML;
+
+    </script>
+
+</body>
+</html>
+
+    <!-- Explain Code -->
+     <script>
+    /* 
+    detailsHTML += ` <li><strong>${key.replace(/_/g, ' ')}:</strong> ${mahabub_Datails[key]}</li> `;
+
+    detailsHTML += appends a new <li> (list item) to the existing string.
+    Inside <li>, ${key.replace(/_/g, ' ')}:
+    Replaces underscores (_) with spaces in the property name for better readability.
+    Example: employee_Id → employee Id
+    <strong>${key}</strong> makes the key bold.
+    ${mahabub_Datails[key]} inserts the corresponding value from the object.
+
+✅ Dynamically generates an unordered list (<ul>) from an object.
+✅ Uses for...in to iterate over object properties.
+✅ Formats keys (key.replace(/_/g, ' ')) to improve readability.
+✅ Creates a visually structured list of object details.
+
+    <li><strong>name:</strong> Md Mahabu Hasan</li>
+
+    for (let key in mahabub_Datails)
+    Breaking it Down
+    for: This is a standard loop keyword in JavaScript.
+    let key: This declares a loop variable key that will store each property name (key) of the object mahabub_Datails during iteration.
+    in mahabub_Datails: This specifies the object that the loop will iterate over.
+    */
+    </script>
