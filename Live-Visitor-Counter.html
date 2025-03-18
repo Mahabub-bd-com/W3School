@@ -1,0 +1,98 @@
+<!-- visit counter code HTML, CSS, JavaScript -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Visitor Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .counter-container {
+            width: 220px;
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        .header {
+            background-color: #4a8c2f;
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .counter-content {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .footer, a {
+            font-size: 12px;
+            margin-top: 5px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-container">
+        <div class="header">Live Visitor Counter</div>
+        <div class="counter-content">
+            <p id="ip-address">Loading...</p>
+            <p>ONLINE............<span id="online">0</span></p>
+            <p>TODAY............<span id="today">0</span></p>
+            <p>MONTH............<span id="month">0</span></p>
+            <p>YEAR............<span id="year">0</span></p>
+            <p>TOTAL............<span id="total">0</span></p>
+        </div>
+        <div class="footer"> <a href="https://www.mahabubinfo.com" target="_blank">www.mahabubinfo.com</a></div>
+    </div>
+
+    <script>
+        // Simulate a random IP address
+        function generateIP() {
+            return `${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 256)}`;
+        }
+
+        // Update the visitor stats dynamically
+        function updateCounter() {
+            let onlineUsers = Math.floor(Math.random() * 10) + 1; // Simulate 1-10 users online
+            let todayVisitors = parseInt(localStorage.getItem("todayVisitors")) || Math.floor(Math.random() * 100);
+            let monthVisitors = parseInt(localStorage.getItem("monthVisitors")) || todayVisitors * 20;
+            let yearVisitors = parseInt(localStorage.getItem("yearVisitors")) || monthVisitors * 12;
+            let totalVisitors = parseInt(localStorage.getItem("totalVisitors")) || yearVisitors + 5000;
+
+            // Increment today's visitors
+            todayVisitors++;
+            monthVisitors++;
+            yearVisitors++;
+            totalVisitors++;
+
+            // Store values in localStorage
+            localStorage.setItem("todayVisitors", todayVisitors);
+            localStorage.setItem("monthVisitors", monthVisitors);
+            localStorage.setItem("yearVisitors", yearVisitors);
+            localStorage.setItem("totalVisitors", totalVisitors);
+
+            // Update HTML
+            document.getElementById("ip-address").textContent = generateIP();
+            document.getElementById("online").textContent = onlineUsers;
+            document.getElementById("today").textContent = todayVisitors;
+            document.getElementById("month").textContent = monthVisitors;
+            document.getElementById("year").textContent = yearVisitors;
+            document.getElementById("total").textContent = totalVisitors;
+        }
+
+        // Run the counter every 5 seconds
+        setInterval(updateCounter, 5000);
+        updateCounter(); // Initial load
+    </script>
+
+</body>
+</html>
